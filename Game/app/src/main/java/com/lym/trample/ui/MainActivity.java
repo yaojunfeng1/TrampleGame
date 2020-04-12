@@ -15,6 +15,7 @@ import com.lym.trample.base.BaseDialog;
 import com.lym.trample.conf.SpConfig;
 import com.lym.trample.dialog.GameReadyDialog;
 import com.lym.trample.utils.SharePreferencesManager;
+import com.umeng.analytics.MobclickAgent;
 
 
 public class MainActivity extends BaseActivity implements OnClickListener,BaseDialog.OnCustomDialogListener {
@@ -107,6 +108,17 @@ public class MainActivity extends BaseActivity implements OnClickListener,BaseDi
         mGameReadyDialog.setOnCustomDialogListener(this);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
     @Override
     public void onClick(View view) {
